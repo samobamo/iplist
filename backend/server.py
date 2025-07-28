@@ -76,12 +76,12 @@ def task_dict_to_model(task_dict):
     if task_dict:
         # Convert due_date string back to date object if it exists
         if task_dict.get('due_date'):
-            task_dict['due_date'] = datetime.fromisoformat(task_dict['due_date']).date()
+            task_dict['due_date'] = datetime.fromisoformat(task_dict['due_date'].replace("Z", "")).date()
         # Convert datetime strings back to datetime objects
         if task_dict.get('created_at'):
-            task_dict['created_at'] = datetime.fromisoformat(task_dict['created_at'])
+            task_dict['created_at'] = datetime.fromisoformat(task_dict['created_at'].replace("Z", ""))
         if task_dict.get('updated_at'):
-            task_dict['updated_at'] = datetime.fromisoformat(task_dict['updated_at'])
+            task_dict['updated_at'] = datetime.fromisoformat(task_dict['updated_at'].replace("Z", ""))
         return Task(**task_dict)
     return None
 
